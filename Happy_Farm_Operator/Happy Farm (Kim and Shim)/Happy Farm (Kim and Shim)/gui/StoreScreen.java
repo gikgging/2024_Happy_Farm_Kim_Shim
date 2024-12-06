@@ -370,7 +370,7 @@ public class StoreScreen
             public void actionPerformed(ActionEvent e) {
                 String selectedProduct = productList.getSelectedValue();
                 if (selectedProduct != null) {
-                    String resultMessage = manager.makeProduct(selectedProduct); //여기에 Gamecenter의 product 함수 넣기
+                    String resultMessage = manager.makeProduct(selectedProduct);
                     JOptionPane.showMessageDialog(productFrame, resultMessage, "Product Creation", JOptionPane.INFORMATION_MESSAGE);
                     setCurrentMoneyLabel();
                     productFrame.dispose();

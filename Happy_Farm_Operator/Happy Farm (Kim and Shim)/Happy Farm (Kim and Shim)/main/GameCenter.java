@@ -84,6 +84,13 @@ public class GameCenter
 	    }
 	}
 	
+	   //The condition of finishing this game
+	public boolean gameFinishing() 
+	{
+	   return false;
+	}
+
+	
 	//Find Item from the list of Items
 	public int findItemIndex(String itemName)
 	{
@@ -283,11 +290,14 @@ public class GameCenter
 	}
 	
 	//Make Product
-	public String makeProduct(String prodName)
+	public String makeProduct(String prName)
 	{
 		String returnString = "";
+		String[] prodInfo = prName.split("\\s+");
+		String prodName = prodInfo[0];
+		Product prod = ProductFactory.createProduct(prodName); //Slicing
 		
-		Product prod = ProductFactory.createProduct(prodName);
+		System.out.println(prodName);
 		if(!farmer.canProd(prod))
 		{
 			returnString += "You need more ingredients to produce " + prodName + "\r\n";
@@ -349,6 +359,32 @@ public class GameCenter
 		}
 		return returnString;
 	}
+	
+		//Function for finishing the game
+	   public String finishGame()
+	   {
+	      String profitString;
+	      double scoreProfit = farm.getProfit();
+	      double scoreCropSpace = farm.getCropSpace();
+	      
+	      if (scoreProfit <= 0.0) 
+	      {
+	         scoreProfit = 0;
+	         profitString = " made no profit!\r\n";
+	      }
+	      else 
+	      {
+	         profitString = " made $" + returnDollarsCents(scoreProfit) + " in profit.\r\n";
+	      }
+	      
+	       String returnString = "The game has finished!\n\n"
+	            + "Stats for " + farmer.getFarmerName() + " on the farm " + farm.getFarmName() + ":\r\n"
+	            + (farmer.getDays() - 1) + " days have passed.\r\n"
+	            + farmer.getFarmerName() + profitString + "\r\n"
+	            + "The size of your farm is " + scoreCropSpace
+	            + "Thank you for enjoying our game!!\r\n";
+	       return returnString;
+	   }
 	
 	
 	// A method to launch the main screen

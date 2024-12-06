@@ -25,6 +25,9 @@ public class Farmer
 	//The inventory for items
 	private Map<String, Integer> itemInventory = new HashMap<>();
 	
+	//The inventory for products
+	private Map<String, Integer> productInventory = new HashMap<>();
+	
 	//Constructor for initialize Farmer
 	 public Farmer(String name)
 	 {
@@ -61,6 +64,12 @@ public class Farmer
 		itemInventory.put("Egg", 0);
 		itemInventory.put("Namool", 0);
 		itemInventory.put("RedBull", 0);
+		
+		//Initialize productInventory
+		productInventory.put("Baguette", 0);
+		productInventory.put("Bibimbap", 0);
+		productInventory.put("Bread", 0);
+		productInventory.put("Kimchi", 0);
 	}
 	
 	//Function to increase the days passed of the farmer on the farm, increases the days passed by 1
@@ -103,6 +112,11 @@ public class Farmer
 	public Map<String, Integer> getItemInven()
 	{
 		return itemInventory;
+	}
+	
+	public Map<String, Integer> getProdInven()
+	{
+		return productInventory;
 	}
 	
 	//Add an Item in Crop Inventory (Already Harvested / It's different with farm's crop)

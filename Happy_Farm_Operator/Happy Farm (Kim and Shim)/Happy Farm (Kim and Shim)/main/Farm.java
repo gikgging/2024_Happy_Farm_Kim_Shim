@@ -21,6 +21,9 @@ public class Farm
 	//Items ArrayList
 	private ArrayList<Item> items = new ArrayList<Item>();
 	
+	//Products ArrayList
+	private ArrayList<Product> prods = new ArrayList<Product>();	
+	
 	//Money the farm has
 	private double money;
 	
@@ -42,6 +45,7 @@ public class Farm
         this.cropSpace = 3;
         this.crops = new ArrayList<>(); 
         this.items = new ArrayList<>(); 
+        this.prods = new ArrayList<>();
         WeatherGenerator(); //Generate the first day weather
 
 	}
@@ -54,6 +58,7 @@ public class Farm
 		this.cropSpace = cropSpace;
 		this.crops = crops; 
 		this.items = items;
+		this.prods = new ArrayList<>();
 		WeatherGenerator(); 
 }
 
@@ -176,6 +181,13 @@ public class Farm
 		return;
 	}
 	
+	//Decrease products
+	public void decreaseProds(Product prod)
+	{
+		prods.remove(prods.indexOf(prod));
+		return;
+	}
+	
 	//Return the array about all of growing crops as string
 	public String returnCropsString(String cropsString, ArrayList<Crop> crops) 
 	{
@@ -230,6 +242,12 @@ public class Farm
 	public ArrayList<Item> getItems() 
 	{
 		return items;
+	}
+	
+	//Return Array about prods the farm has
+	public ArrayList<Product> getProds()
+	{
+		return prods;
 	}
 	
 	//Return used crop space

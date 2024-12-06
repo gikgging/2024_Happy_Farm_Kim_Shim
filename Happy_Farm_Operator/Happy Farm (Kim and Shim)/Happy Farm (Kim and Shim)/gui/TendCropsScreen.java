@@ -115,12 +115,6 @@ public class TendCropsScreen
 		goBackButton.setBounds(10, 11, 300, 56);
 		headerPanel.add(goBackButton);
 		
-		JLabel actionsRemainingLabel = new JLabel("Actions: " + (2 - manager.getFarmer().getFarmerStrength()) + " remaining");
-		actionsRemainingLabel.setHorizontalAlignment(SwingConstants.RIGHT);
-		actionsRemainingLabel.setFont(new Font("Tahoma", Font.PLAIN, 18));
-		actionsRemainingLabel.setBounds(860, 11, 294, 56);
-		headerPanel.add(actionsRemainingLabel);
-		
 		JPanel tendCropsPanel = new JPanel();
 		tendCropsPanel.setLayout(null);
 		tendCropsPanel.setBorder(new LineBorder(new Color(0, 0, 0)));
