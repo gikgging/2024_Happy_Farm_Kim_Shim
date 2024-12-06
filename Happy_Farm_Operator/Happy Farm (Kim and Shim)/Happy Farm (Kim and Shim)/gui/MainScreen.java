@@ -77,7 +77,7 @@ public class MainScreen
 	private void initialize() 
 	{
 		mainScreenFrame = new JFrame();
-		mainScreenFrame.setTitle("Farm Simulator - Main Screen");
+		mainScreenFrame.setTitle("Happy Farm - Main Screen");
 		mainScreenFrame.setBounds(100, 100, 1200, 650);
 		mainScreenFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		mainScreenFrame.getContentPane().setLayout(null);
@@ -225,7 +225,7 @@ public class MainScreen
 		actionsRequiredPanel.add(drinkRedBullButton);
 		drinkRedBullButton.setBackground(new Color(240, 128, 128));
 
-		// Drink RedBull 버튼 클릭 이벤트 처리
+		// Drink RedBull
 		drinkRedBullButton.addActionListener(new ActionListener() {
 		    public void actionPerformed(ActionEvent e) {
 		        String message = manager.plusStrength("RedBull"); // GameCenter의 plusStrength 메소드 호출

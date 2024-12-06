@@ -15,13 +15,7 @@ public class Item implements StoreProduct
 	//The bonus of the item.
 	private int bonus;
 	
-	/**
-	 * The Constructor function for Item Class, this constructor initializes variables <code>itemName</code>, <code>type</code>, <code>purchasePrice</code> and <code>bonus</code>.
-	 * @param name Name of the Item
-	 * @param initType Type of the Item.
-	 * @param price Price of the Item
-	 * @param initBonus Bonus of the Item.
-	 */
+	//The Item constructure for initializing items
 	public Item(String name, String initType, double price, int initBonus)
 	{
 		itemName = name;
@@ -31,10 +25,7 @@ public class Item implements StoreProduct
 		
 	}
 	
-	/**
-	 * For copying an item class (this is used when you buy an item)
-	 * @param item Item Class.
-	 */
+	//Copy item class
 	public Item(Item item)
 	{
 		itemName = item.getName();
@@ -44,37 +35,25 @@ public class Item implements StoreProduct
 		
 	}
 	
-	/**
-	 * Returns the name of the item.
-	 * @return the name of item.
-	 */
+	//Get item name
 	public String getName()
 	{
 		return itemName;
 	}
 	
-	/**
-	 * Returns the purchase price of the item.
-	 * @return The purchase price of item.
-	 */
+	//Get item price
 	public double getBuyPrice() 
 	{
 		return buyPrice;
 	}
 	
-	/**
-	 * Returns the bonus given by the item.
-	 * @return The bonus of item.
-	 */
+	//Get item bonus
 	public int getBonus()
 	{
 		return bonus;
 	}
 	
-	/**
-	 * Returns the type of the item.
-	 * @return The type of item.
-	 */
+	//Get item type
 	public String getType()
 	{
 		return type;

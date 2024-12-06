@@ -317,14 +317,14 @@ public class StoreScreen
 		    }
 		});
 		
-		// Sell Crops 버튼 추가
+		// Sell Crops Button
 		JButton sellCropsButton = new JButton("Sell Crops");
 		sellCropsButton.setFont(new Font("Tahoma", Font.BOLD, 18));
 		sellCropsButton.setBounds(150, 450, 380, 100);
 		storeFrame.getContentPane().add(sellCropsButton);
 		sellCropsButton.setBackground(new Color(255, 192, 203));
 
-		// Sell Crops 버튼 클릭 이벤트 처리
+		// Sell Crops Button Click
 		sellCropsButton.addActionListener(new ActionListener() {
 			 public void actionPerformed(ActionEvent e) {
 			        String cropName = JOptionPane.showInputDialog(storeFrame, "Enter the name of the crop to sell:");

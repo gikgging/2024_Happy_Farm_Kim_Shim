@@ -58,17 +58,13 @@ public class Store
 		productsInStore.add(new Kimchi());
 	}
 	
-	/**
-	 * Returns the cropsForSale ArrayList.
-	 */
+	// Returns the cropsForSale ArrayList.
 	public ArrayList<Crop> getCropsInStore()
 	{
 		return cropsInStore;
 	}
 	
-	/**
-	 * Returns the itemsForSale ArrayList.
-	 */
+	//Returns the itemsForSale ArrayList.
 	public ArrayList<Item> getItemsInStore()
 	{
 		return itemsInStore;
@@ -78,21 +74,14 @@ public class Store
 	{
 		return productsInStore;
 	}
-	/**
-	 * return Crop at <code>index</code> to be purchased.
-	 * @param index Index of crop to buy.
-	 * @return The Crop at specified <code>index</code>.
-	 */
+
+	//Buy the crops
 	public Crop buyCrops(int index)
 	{
 		return cropsInStore.get(index);
 	}
 	
-	/**
-	 * return Item at <code>index</code> to be purchased.
-	 * @param index Index of item to buy.
-	 * @return The Item at specified <code>index</code>.
-	 */
+	//Buy the items
 	public Item buyItems(int index)
 	{
 		return itemsInStore.get(index);
