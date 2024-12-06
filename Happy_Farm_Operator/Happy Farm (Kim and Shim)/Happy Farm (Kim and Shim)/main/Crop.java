@@ -37,14 +37,7 @@ public class Crop implements StoreProduct
 	private double rainGrown = 0;
 	
 	
-	
-	/**
-	 * Constructor function for Crop Class with each element
-	 * kind: The name of the crop.
-	 * i_buyPrice: The initial purchase price of the crop.
-	 * i_sellPrice: The initial sell price of the crop.
-	 * i_goalGrowth: The initial number of days the crop has to grow.
-	 */
+	//Constructor function for Crop with each parameter
 	public Crop(String kind, double i_buyPrice, double i_sellPrice, int i_day, double i_sun, double i_rain)
 	{
 		name = kind;
@@ -55,10 +48,7 @@ public class Crop implements StoreProduct
 		rainMax = i_rain;
 	}
 	
-	/**
-	 * for copying a crop class (this is used when you buy an crop).
-	 * @param crop Crop class.
-	 */
+	//Constructor function for Crop with Crop class parameter
 	public Crop(Crop crop)
 	{
 		name = crop.getName();
