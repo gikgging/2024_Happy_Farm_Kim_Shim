@@ -77,7 +77,7 @@ public class MainScreen
 	private void initialize() 
 	{
 		mainScreenFrame = new JFrame();
-		mainScreenFrame.setTitle("Farm Simulator - Main Screen");
+		mainScreenFrame.setTitle("Happy Farm - Main Screen");
 		mainScreenFrame.setBounds(100, 100, 1200, 650);
 		mainScreenFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		mainScreenFrame.getContentPane().setLayout(null);
