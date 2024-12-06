@@ -25,4 +25,4 @@ Java Swing for GUI development
 Object-Oriented Programming principles
 
 # Getting Started
-To start playing Happy Farm, Run with the GameCenter class. Follow the on-screen instructions to set up your farm and start your agricultural adventure!
+To start playing Happy Farm, Set run configuration with the main.GameCenter class. Follow the on-screen instructions to set up your farm and start your agricultural adventure!
