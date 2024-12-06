@@ -1,5 +1,6 @@
 package main;
 
+//Play with this file!!! (SY & HJ)
 
 import gui.MainScreen;
 import gui.SetupScreen;
@@ -36,15 +37,7 @@ public class GameCenter
 	
 	private MainScreen mainScreen;
 	
-	/**
-	 * Starts a new game by getting number of days, farmer name, farm type, and farm name.
-	 * @param initNumDays the number of days the user wants to play for.
-	 * @param farmerName the name of the farmer.
-	 * @param farmerAge the age of the farmer.
-	 * @param farmType the type of the farm.
-	 * @param farmName the name of the farm.
-	 */
-
+	//Set up the Game (farmerName, farmName, GUI, goal, weather, store)
 	public void setupGame(String farmerName, String farmName) 
 
 	{
