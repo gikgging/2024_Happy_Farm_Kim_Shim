@@ -85,7 +85,7 @@ public class TendCropsScreen
 	private void initialize() 
 	{
 		tendCropsScreenFrame = new JFrame();
-		tendCropsScreenFrame.setTitle("Farm Simulator - Tend to Crops");
+		tendCropsScreenFrame.setTitle("Happy Farm - Tend to Crops");
 		tendCropsScreenFrame.setBounds(100, 100, 1200, 650);
 		tendCropsScreenFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		tendCropsScreenFrame.getContentPane().setLayout(null);

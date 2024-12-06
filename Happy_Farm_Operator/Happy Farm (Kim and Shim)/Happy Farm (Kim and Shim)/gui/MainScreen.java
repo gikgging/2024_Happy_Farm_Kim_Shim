@@ -225,7 +225,7 @@ public class MainScreen
 		actionsRequiredPanel.add(drinkRedBullButton);
 		drinkRedBullButton.setBackground(new Color(240, 128, 128));
 
-		// Drink RedBull 버튼 클릭 이벤트 처리
+		// Drink RedBull
 		drinkRedBullButton.addActionListener(new ActionListener() {
 		    public void actionPerformed(ActionEvent e) {
 		        String message = manager.plusStrength("RedBull"); // GameCenter의 plusStrength 메소드 호출
