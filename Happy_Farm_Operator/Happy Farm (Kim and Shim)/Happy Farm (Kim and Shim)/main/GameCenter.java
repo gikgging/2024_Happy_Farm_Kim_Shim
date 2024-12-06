@@ -68,23 +68,19 @@ public class GameCenter
 	}
 		
 	
-	/**
-	 * A function for moving on to the next day, Called when the player sleeps.
-	 * This function increases the farmers age, reduces the actions performed to 0 and grows the crops owned.
-	 * If the farmers age is equal to the number of days set during startup, the finishing sequence begins.
-	 */
+	//Set everyday's start
 	public void nextDay() 
 	{
 		farmer.increaseDays();
 		farmer.setStrength(farmer.getFarmerMaxStrength());
 		farmer.addMaxStrength(5); //+5 MaxStrength
-		farm.WeatherGenerator(); //날씨를 바꿔줌
-		weather = farm.getTodayWeather(); //그걸 여기다가 저장해줌!!
-		farm.growCrops(weather); //작물들이 자라게 해줌
+		farm.WeatherGenerator(); //Change Weather
+		weather = farm.getTodayWeather(); //Save it in here
+		farm.growCrops(weather); //To make crops grow
 		
-		if (farmer.getDays() % 7 == 0) { // 7일마다 호출
-	        String results = dealwithGoal(); // 목표 처리 및 결과 얻기
-	        // MainScreen에서 결과 화면을 보여주는 메소드 호출
+		if (farmer.getDays() % 7 == 0) { //For everyweek
+	        String results = dealwithGoal(); //Deal with goal
+	        //Call
 	        mainScreen.showGoalResults(results); // MainScreen에서 결과를 보여줌
 	    }
 	}
