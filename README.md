@@ -26,5 +26,6 @@ Object-Oriented Programming principles
 
 # Getting Started
 To start playing Happy Farm, Set run configuration with the main.GameCenter class. Follow the on-screen instructions to set up your farm and start your agricultural adventure!
+If you download the zip file, you can import in Eclipse with "Projects from Folder or Archive" and select the directory and open the folder. Thankyou.
 
 **This repository is rebuild because of conflicting. So it may loose some past commit coments.
