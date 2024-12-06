@@ -79,27 +79,16 @@ public class GameCenter
 		farm.growCrops(weather); //To make crops grow
 		
 		if (farmer.getDays() % 7 == 0) { //For everyweek
-	        String results = dealwithGoal(); //Deal with goal
-	        //Call
-	        mainScreen.showGoalResults(results); // MainScreen에서 결과를 보여줌
+	        String results = dealwithGoal(); //Deal with weekly goals
+	        mainScreen.showGoalResults(results); //Show the results at main screen
 	    }
-	}
-	
-	/**
-	 * A function for testing if the game can finish or not by returning true if the farmers age is equal to the number of days + 1, the +1 to have the game finish after the numberOfDays day.
-	 * @return true or false depending on the farmers age.
-	 */
-	//The condition of finishing this game
-	public boolean gameFinishing() 
-	{
-		return false; //game이 끝나는 조건
 	}
 	
 	//Find Item from the list of Items
 	public int findItemIndex(String itemName)
 	{
 		int count = 0;
-		int index = -1; //-1로 고쳐봄
+		int index = -1;
 		for (Item item: farm.getItems())
 		{
 			if (item.getName() == itemName)
@@ -111,12 +100,6 @@ public class GameCenter
 		return index;
 	}
 	
-	/**
-	 * Tends to all of the crops owned with the specified <code>cropIndex</code> and <code>itemName</code>.
-	 * @param cropIndex The crop index
-	 * @param itemName The item name
-	 * @return String identifying the action performed.
-	 */
 	//Tend Crops
 	public String tendToCrops(int cropIndex, String itemName) //1 tend = Strength 10
 	{
@@ -181,13 +164,9 @@ public class GameCenter
 			return "You can't increase your strength by using " + itemUsed.getName();
 		}
 	}
-	
 
-	/**
-	 * A function that harvests all crops that can be harvested.
-	 * @return The total money made form harvesting the crops.
-	 */
-	public void harvestAvailableCrops() //Inventory로 저장되게끔 수정
+	//Harvest Crop
+	public void harvestAvailableCrops()
 	{
 		ArrayList<Crop> cropsToRemove = new ArrayList<Crop>();
 		
@@ -207,13 +186,8 @@ public class GameCenter
 		
 		return;
 	}
-	
-	/**
-	 * A function that will harvest the crops that can be harvested, 
-	 * it does this by calling the harvestAvailableCrops function in the Farm class.
-	 * @return String identifying the action performed.
-	 */
-	//Harvest all the possible crops
+
+	//Harvest all the possible crops (Managing whole harvest process)
 	public String harvestCrops() //1 Harvest = Strength 20
 	{
 		if (farmer.getFarmerStrength() < 10) 
@@ -259,13 +233,12 @@ public class GameCenter
 		return returnStrings;
 	}
 	
-	/**
-	 * Every week, we..
-	 * check whether he/she accomplished the weekly goal
-	 * give bonus
-	 * set new weekly goal
-	 * notice him/her about new weekly goal
-	 * @return returnString
+	/*
+	 - Every week, we..
+	 - check whether he/she accomplished the weekly goal
+	 - give bonus
+	 - set new weekly goal
+	 - notice him/her about new weekly goal
 	 */
 	public String dealwithGoal()
 	{
@@ -296,6 +269,7 @@ public class GameCenter
 		return returnString;
 	}
 	
+	//Return whether the user achieve the goal!
 	public boolean isGoal()
 	{
 		if(farm.getMoney() >= goal)
@@ -356,6 +330,7 @@ public class GameCenter
 				}
 			}
 			
+			//Decrease the farmer's strength for producing
 			if(farmer.getFarmerStrength() >= prod.getDecStr())
 			{
 				farmer.subStrength(prod.getDecStr());
@@ -375,112 +350,58 @@ public class GameCenter
 		return returnString;
 	}
 	
-
-	/**
-	 * The finishGame function, called when the farmers age has reached the numDays set during startup.
-	 * Prints out the farmers name, the number of days passed, the money made and the score.
-	 * @return finish game dialog String
-	 */
-	public String finishGame() //Finish the game
-	{
-		String profitString;
-		double scoreProfit = farm.getProfit();
-		double scoreCropSpace = farm.getCropSpace();
-		
-		if (scoreProfit <= 0.0) 
-		{
-			scoreProfit = 0;
-			profitString = " made no profit!\r\n";
-		}
-		else 
-		{
-			profitString = " made $" + returnDollarsCents(scoreProfit) + " in profit.\r\n";
-		}
-		
-		 String returnString = "The game has finished!\n\n"
-				+ "Stats for " + farmer.getFarmerName() + " on the farm " + farm.getFarmName() + ":\r\n"
-				+ (farmer.getDays() - 1) + " days have passed.\r\n"
-				+ farmer.getFarmerName() + profitString + "\r\n"
-				+ "The size of your farm is " + scoreCropSpace
-				+ "Thank you for enjoying our game!!\r\n";
-		 return returnString;
-	}
 	
-	/**
-	 * A method to launch the main screen where the user controls the game.
-	 */
+	// A method to launch the main screen
 	public void launchMainScreen()
 	{
 		mainScreen = new MainScreen(this);
 	}
 	
-	/**
-	 * A method to close the main screen
-	 * @param mainWindow The main screen.
-	 */
+	//
 	public void closeMainScreen(MainScreen mainWindow)
 	{
 		mainWindow.closeWindow();
 	}
 	
-	/**
-	 * A method to launch the setup screen where the user sets up the game.
-	 */
+	// A method to launch the setup screen
 	public void launchSetupScreen()
 	{
 		setupWindow = new SetupScreen(this);
 	}
 	
-	/**
-	 * A method to close the setup screen.
-	 * @param setupWindow The setup screen.
-	 */
+	//A method to close the setup screen
 	public void closeSetupScreen(SetupScreen setupWindow)
 	{
 		setupWindow.closeWindow();
 		launchMainScreen(); // Only here for closing the setup screen, as this is used once.
 	}
 	
-	/**
-	 * A method to launch the store screen where the user buys crops, animals and items.
-	 */
+	//A method to launch the store screen
 	public void launchStoreScreen()
 	{
 		new StoreScreen(this);
 	}
 	
-	/**
-	 * A method to close the store screen
-	 * @param storeWindow The store screen.
-	 */
+	//A method to close the store screen
 	public void closeStoreScreen(StoreScreen storeWindow)
 	{
 		storeWindow.closeWindow();
 	}
-	/**
-	 * A method to launch the tend to crops screen where the user tends to crops by using items.
-	 */
+	//A method to launch the tend to crops screen
 	public void launchTendCropsScreen()
 	{
 		new TendCropsScreen(this);
 	}
 	
-	/**
-	 * A method to close the tend to crops screen
-	 * @param tendCropsWindow The tend crops screen.
-	 */
+	//A method to close the tend to crops screen
 	public void closeTendCropsScreen(TendCropsScreen tendCropsWindow)
 	{
 		tendCropsWindow.closeWindow();
 	}
 	
 
-	/**
-	 * Returns a String array with the name of all of the crops currently owned.
-	 * @return String Array containing names of Animals
-	 * 
-	 */
-	public String[] returnCropTypeArray()  //모든 Crop의 이름만 들어있는 Array
+	//Return a String array only with the name of all of the crops
+	public String[] returnCropTypeArray()
 	{
 		ArrayList<Crop> differentCrops = returnDifferentCropsOwned();
 		ArrayList<String> differentCropNames = new ArrayList<String>();
@@ -492,11 +413,7 @@ public class GameCenter
 		return cropArray;
 	}
 	
-	/**
-	 * Returns a String array with the name of all of the items currently owned given the correct String <code>itemType</code>.
-	 * @param itemType The item's type as a String.
-	 * @return String Array containing names of items
-	 */
+	//Return a String array only with the name of all of the items
 	public String[] returnCurrentItemsArray(String itemType) 
 	{
 		ArrayList<String> currentItems = new ArrayList<String>();
@@ -518,10 +435,7 @@ public class GameCenter
 		return currentItemsArray;
 	}
 	
-	/**
-	 * Returns a String formated correctly for displaying each crop and animal and its status.
-	 * @return string containing status of crops and animals
-	 */
+	//Return a String for displaying each crop and its status.
 	public String returnStatusCrops()
 	{
 		String returnString = "";
@@ -545,10 +459,7 @@ public class GameCenter
 		return returnString;
 	}
 	
-	/**
-	 * A function for returning the items the user currently owns in a string format with one item per line.
-	 * @return string of items
-	 */
+	//A function for returning the items
 	public String returnItemsString()
 	{
 		String returnString;
@@ -569,10 +480,7 @@ public class GameCenter
 	}
 	
 	
-	/**
-	 * A function for returning the harvested crops the user currently owns in a string format with one item per line.
-	 * @return string of items
-	 */
+	//A function for returning the harvested crops (Related to Farm.crops)
 	public String returnCropsString()
 	{
 		String returnString;
@@ -592,37 +500,25 @@ public class GameCenter
 		return returnString;
 	}
 	
-	/**
-	 * Returns the money the farm currently has in string format to have it to 2dp.
-	 * @return farm money
-	 */
+	//Return the money the farm earns
 	public String returnMoneyString()
 	{
 		return returnDollarsCents(farm.getMoney());
 	}
 	
-	/**
-	 * Returns the crop space available, used when the user wants to buy more crops.
-	 * @return free crop space
-	 */
+	//Return the crop space available
 	public int returnFreeCropSpace()
 	{
 		return farm.calculateFreeSpace();
 	}
 	
-	/**
-	 * Returns the age of the farmer. Used to check the number of.
-	 * @return Age of farmer
-	 */
+	//Return the days of the farm has been passed
 	public int returnDays()
 	{
 		return farmer.getDays();
 	}
 	
-	/**
-	 * Returns String Array of crops with the crops formated so that each crop has its details and price on one line.
-	 * @return String Array of crops
-	 */
+	//Return String Array of crops with the crops
 	public String[] returnCropArray()
 	{
 		ArrayList<String> cropArrayList = new ArrayList<String>();
@@ -637,11 +533,7 @@ public class GameCenter
 		return cropArray;
 	}
 	
-	/**
-	 * Takes a purchaseOption index and purchases the Crop at that index in the farm crops ArrayList.
-	 * @param purchaseOption Crop the user chose to buy.
-	 * @return String detailing what the user did.
-	 */
+	//Take a purchaseOption(=index) and purchases the Crop
 	public String purchaseCrop(int purchaseOption)
 	{
 		String purchaseCropString = "";
@@ -667,10 +559,7 @@ public class GameCenter
 	
 	
 	
-	/**
-	 * Returns String Array of items with the items formated so that each item has its details and price on one line.
-	 * @return String Array of items
-	 */
+	//Return String Array of items with the items
 	public String[] returnItemArray()
 	{
 		ArrayList<String> itemArrayList = new ArrayList<String>();
@@ -689,11 +578,7 @@ public class GameCenter
 		return itemArray;
 	}
 	
-	/**
-	 * Takes a purchaseOption index and purchases the Item at that index in the farm items ArrayList.
-	 * @param purchaseOption Item the user chose to buy.
-	 * @return String detailing what the user did.
-	 */
+	//Take a purchaseOption(=index) and purchases the Item
 	public String purchaseItem(int purchaseOption)
 	{
 		String purchaseItemString = "";
@@ -710,10 +595,7 @@ public class GameCenter
 	return purchaseItemString;
 	}
 	
-	/**
-	 * Returns the number of items the user has that have the type "Crop".
-	 * @return integer of the number of items of type "Crop".
-	 */
+	//Return the number of Items whose type is "crop"
 	public int returnCropItemSize()
 	{
 		int size = 0;
@@ -728,11 +610,8 @@ public class GameCenter
 	}
 	
 	
-	/**
-	 * Returns the different types of crops owned by their Name.
-	 * @return Crop ArrayList of crops.
-	 */
-	public ArrayList<Crop> returnDifferentCropsOwned() //모든 Crop들이 하나씩만 있는 ArrayList
+	//Return the array about the different types of each crop
+	public ArrayList<Crop> returnDifferentCropsOwned()
 	{
 		ArrayList<Crop> differentCrops = new ArrayList<Crop>();
 		for(Crop crop: store.getCropsInStore())
@@ -748,6 +627,7 @@ public class GameCenter
 		return differentCrops;
 	}
 	
+	//Show Crop Inventory (Related to farmer.crops / already harvested)
 	public String showCropInven()
 	{
 		Map<String, Integer> cropIv = farmer.getCropInven();
@@ -760,66 +640,56 @@ public class GameCenter
 		return result;
 	}
 	
-	/**
-	 * A simple function to check whether a string has only alphabetical letters.
-	 * Returns false if it does not.
-	 * @param name The name being tested for only Alpha characters.
-	 * @return True or false depending on the characters in <code>name</code>
-	 */
+	//A function to check whether a string has only alphabetical letters.
 	public boolean isAlpha(String name)
 	{
 	    return name.matches("[a-zA-Z ]+");
 	}
 	
-	/**
-	 * Returns a double as a string with two decimal places, for use with dollars and cents.
-	 * @param amount The amount of money owning.
-	 * @return String format of a double with 2dp
-	 */
+	//Return a double as a string with two decimal places, for use with dollars and cents
 	public String returnDollarsCents(double amount)
 	{
 		return String.format("%.2f", amount);
 	}
 	
-	/**
-	 * Returns the ArrayList crops from the farm class.
-	 * @return ArrayList of crops owned.
-	 */
+	//Return the ArrayList crops from the farm
 	public ArrayList<Crop> getCrops()
 	{
 		return farm.getCrops();
 	}
 	
-	/**
-	 * main function of the program. this is where the game is started by calling the startGame and mainGame methods.
-	 * @param args An array of command line arguments for the application.
-	 */
+	//Main function of the program
 	public static void main(String[] args)
 	{
 		GameCenter game = new GameCenter();
 		game.launchSetupScreen();
 	}
 	
+	//Return the farmer class of the game
 	public Farmer getFarmer()
 	{
 		return this.farmer;
 	}
 	
+	//Return the weather class of the game
 	public Weather getWeather()
 	{
 		return this.weather;
 	}
 	
+	//Return the farm class of the game
 	public Farm getFarm()
 	{
 		return this.farm;
 	}
 	
+	//Return the store class of the game
 	public Store getStore()
 	{
 		return this.store;
 	}
 	
+	//Return weekly goal
 	public double getGoal()
 	{
 		return this.goal;
