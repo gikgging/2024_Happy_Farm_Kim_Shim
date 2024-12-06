@@ -4,14 +4,9 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.ArrayList;
 
-/**
- * Farmer class where the users farmer is.
- * Here the users farmer gets set up.
- */
-
+//Farmer Class is about the activity he/she does
 public class Farmer 
 {
-
 	//The name of the farmer.
 	private String farmerName;
 	
@@ -30,37 +25,29 @@ public class Farmer
 	//The inventory for items
 	private Map<String, Integer> itemInventory = new HashMap<>();
 	
-	//The inventory for products
-	private Map<String, Integer> productInventory = new HashMap<>();
-	
-	/**
-	 * Constructor function for Farmer Class
-	 * Name: Name of the farmer.
-	 * Days: The Days passed while farming.
-	 * Strength: The Strength of the farmer.
-	 */
-	
-	//The constructor for initialize Farmer
-	 public Farmer(String name) //(SY) Farmer constructor for initialize
+	//Constructor for initialize Farmer
+	 public Farmer(String name)
 	 {
 	        this.farmerName = name;
-	        this.farmerStrength = 20; // 추후 적당한 체력 값 정하기
-	        this.farmerMaxStrength = 20; //레벨이
-	        this.farmerDays = 1;  // 첫날
+	        this.farmerStrength = 20;
+	        this.farmerMaxStrength = 20;
+	        this.farmerDays = 1; 
 	        
-	        initInventories();  // 인벤토리 초기화
+	        initInventories(); //Initialize Inventory
 	   		}
 	 
-	public Farmer(String name, int strength, int maxStrength, int days) //(SY) Farmer constructor for customizing
+	//Constructor with customizing with each parameter
+	public Farmer(String name, int strength, int maxStrength, int days)
 	{
 		this.farmerName = name;
 		this.farmerStrength = strength;
 		this.farmerMaxStrength = maxStrength;
 		this.farmerDays = days;
 		
-		initInventories();
+		initInventories(); //Initialize Inventory
 	}
 	
+	//Initialize Inventory
 	private void initInventories() {
 		//Initialize cropInventory
 		cropInventory.put("Cabbage", 0);
@@ -74,12 +61,6 @@ public class Farmer
 		itemInventory.put("Egg", 0);
 		itemInventory.put("Namool", 0);
 		itemInventory.put("RedBull", 0);
-		
-		//Initialize productInventory
-		productInventory.put("Baguette", 0);
-		productInventory.put("Bibimbap", 0);
-		productInventory.put("Bread", 0);
-		productInventory.put("Kimchi", 0);
 	}
 	
 	//Function to increase the days passed of the farmer on the farm, increases the days passed by 1
@@ -88,42 +69,43 @@ public class Farmer
 		farmerDays++;
 	}
 	
-	//Returns the farmer's strength.
+	//Return the farmer's strength.
 	public int getFarmerStrength()
 	{
 		return farmerStrength;
 	}
 	
+	//Return the farmer's Max Strength at that day (for initialize everyday)
 	public int getFarmerMaxStrength()
 	{
 		return farmerMaxStrength;
 	}
 	
-	//Returns the days passed for the farmer.
+	//Return the days passed for the farmer.
 	public int getDays()
 	{
 		return farmerDays;
 	}
 	
-	//Returns the farmer's name.
+	//Return the farmer's name.
 	public String getFarmerName()
 	{
 		return farmerName;
 	}
 	
-	//Returns Inventory for Crops
+	//Return Inventory for Crops
 	public Map<String, Integer> getCropInven()
 	{
 		return cropInventory;
 	}
 	
-	//Returns Inventory for Items
+	//Return Inventory for Items
 	public Map<String, Integer> getItemInven()
 	{
 		return itemInventory;
 	}
 	
-	//Add an Item in Crop Inventory
+	//Add an Item in Crop Inventory (Already Harvested / It's different with farm's crop)
 	public void addCropInven(String cropName)
 	{
 		if(cropInventory.containsKey(cropName))
@@ -136,7 +118,7 @@ public class Farmer
 		}
 	}
 	
-	//Add an Item in Item Inventory
+	//Add an Item in Item Inventory (It's same as farm's item)
 	public void addItemInven(String itemName)
 	{
 		if(itemInventory.containsKey(itemName))
@@ -182,20 +164,7 @@ public class Farmer
 		return;
 	}
 	
-	//Remove a Product from Product Inventory
-	public void subProductInven(String prodName, int dec)
-	{
-		if(productInventory.containsKey(prodName))
-		{
-			Integer value = getItemValue(prodName);
-			if(value != null && value >= dec)
-			{
-				productInventory.put(prodName, value-dec);
-			}
-		}
-		return;
-	}
-	
+	//Return whether I can produce this product
 	public boolean canProd(Product prod)
 	{
 		Map<String, Integer> ingredients = prod.getIngrd();
@@ -225,19 +194,21 @@ public class Farmer
 		return true;
 	}
 	
+	//Set farmer's strength as set
 	public void setStrength(int set)
 	{
 		this.farmerStrength = set;
 		return;
 	}
 	
+	//Add farmer's strength +add
 	public void addMaxStrength(int add)
 	{
 		this.farmerMaxStrength += add;
 		return;
 	}
 	
-	//Decrease his strength
+	//Decrease farmer's strength
 	public void subStrength(int dec)
 	{
 		if(farmerStrength >= dec)
@@ -247,7 +218,7 @@ public class Farmer
 		return;
 	}
 	
-	//Returns value of the crop (when it doesn't exist -> null)
+	//Return value of the crop (when it doesn't exist -> null)
 	public Integer getCropValue(String cropName) 
 	{
 		if(cropInventory.containsKey(cropName))
@@ -258,7 +229,7 @@ public class Farmer
 			return null;
 	}
 	
-	//Returns value of the item (when it doesn't exist -> null)
+	//Return value of the item (when it doesn't exist -> null)
 	public Integer getItemValue(String itemName) 
 	{
 		if(itemInventory.containsKey(itemName))

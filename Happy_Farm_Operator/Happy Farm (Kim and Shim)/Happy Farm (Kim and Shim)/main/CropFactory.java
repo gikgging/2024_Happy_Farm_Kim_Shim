@@ -6,7 +6,10 @@ import crops.Pepper;
 import crops.Rice;
 import crops.Wheat;
 
+//CropFactory give information about the crop which we only know the name
 public class CropFactory {
+	
+	//Give info about the crop
     public static Crop createCrop(String cropName) {
         switch(cropName) {
             case "Cabbage":

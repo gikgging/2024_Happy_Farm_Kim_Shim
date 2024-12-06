@@ -37,14 +37,7 @@ public class Crop implements StoreProduct
 	private double rainGrown = 0;
 	
 	
-	
-	/**
-	 * Constructor function for Crop Class with each element
-	 * kind: The name of the crop.
-	 * i_buyPrice: The initial purchase price of the crop.
-	 * i_sellPrice: The initial sell price of the crop.
-	 * i_goalGrowth: The initial number of days the crop has to grow.
-	 */
+	//Constructor function for Crop with each parameter
 	public Crop(String kind, double i_buyPrice, double i_sellPrice, int i_day, double i_sun, double i_rain)
 	{
 		name = kind;
@@ -55,10 +48,7 @@ public class Crop implements StoreProduct
 		rainMax = i_rain;
 	}
 	
-	/**
-	 * for copying a crop class (this is used when you buy an crop).
-	 * @param crop Crop class.
-	 */
+	//Constructor function for Crop with Crop class parameter
 	public Crop(Crop crop)
 	{
 		name = crop.getName();
@@ -72,11 +62,7 @@ public class Crop implements StoreProduct
 		rainGrown = 0;
 	}
 	
-	/**
-	 * Returns true of false depending on whether the crop can be harvested.
-	 * This is done by checking if the <code>daysGrown</code> is greater than or equal to <code>daysToGrow</code>.
-	 * @return true if the crop can be harvested, false otherwise.
-	 */
+	//Return whether we can harvest the crop
 	public boolean canHarvest()
 	{
 		if ((dayGrown >= dayMax) && (sunGrown >= sunMax) && (rainGrown >= rainMax) )
@@ -87,15 +73,13 @@ public class Crop implements StoreProduct
 	}
 	
 	
-	/**
-	 * Grows the crop by increasing its <code>daysGrown</code> only if the days left to grow is greater than 0.
-	 */
+	//Grow the crop
 	public void grow(Weather todayWeather)
 	{
 		if (getLeftDay() > 0)
 		{
 			dayGrown++;
-		}
+		} //Add Day
 		
 		if (getLeftSun() > todayWeather.GetSun())
 		{
@@ -104,7 +88,7 @@ public class Crop implements StoreProduct
 		else
 		{
 			sunGrown = sunMax;
-		}
+		} //Add Sun
 		
 		if (getLeftRain() > todayWeather.GetRain())
 		{
@@ -113,15 +97,11 @@ public class Crop implements StoreProduct
 		else
 		{
 			rainGrown = rainMax;
-		}
-		
-		
+		} //Add Rain
+		return;
 	}
 	
-	/**
-	 * Tends to the crop by the specified double <code>daysToIncrease</code>, only if the days left to grow is greater than 0.
-	 * @param daysToIncrease Number of days to increase growth by.
-	 */
+	//Tend the crop with Item or Water
 	public void tend(int increasedDay, Weather tendWeather)
 	{
 		//For Day
@@ -155,82 +135,74 @@ public class Crop implements StoreProduct
 		}
 	}
 	
-	/**
-	 * Returns the purchase price of the crop.
-	 * @return the purchase price.
-	 */
+	//Return the BuyPrice of the crop
 	public double getBuyPrice()
 	{
 		return buyPrice;
 	}	
-	
-	/**
-	 * Returns the sell price of the crop.
-	 * @return the sell price.
-	 */
+
+	//Return the SellPrice of the crop
 	public double getSellPrice()
 	{
 		return sellPrice;
 	}
 	
-	/**
-	 * Returns the name of the crop.
-	 * @return the name of the crop.
-	 */
+	//Return the Name of the crop
 	public String getName() 
 	{
 		return name;
 	}
 	
-	/**
-	 * Returns the number of days the crop has grown.
-	 * @return The days the crop has grown.
-	 */
+	//Return the Days the crop is being grown by now
 	public int getDayGrown() 
 	{
 		return dayGrown;
 	}
 	
+	//Return the Days for completed grown crop
 	public int getDayMax()
 	{
 		return dayMax;
 	}
 	
+	//Return the Sun the crop has gotten by now
 	public double getSunGrown()
 	{
 		return sunGrown;
 	}
 	
+	//Return the Sun the crop needed to be completed
 	public double getSunMax()
 	{
 		return sunMax;
 	}
 	
+	//Return the Water the crop has gotten by now
 	public double getRainGrown()
 	{
 		return rainGrown;
 	}
 	
+	//Return the Water the crop needed to be completed
 	public double getRainMax()
 	{
 		return rainMax;
 	}
 
 	
-	/**
-	 * Calculates and returns the days the crop has left to grow by subtracting the <code>daysGrown</code> from <code>daysToGrow</code>.
-	 * @return The days the crop has left to grow.
-	 */
+	//How many days are left to be completed
 	public int getLeftDay() 
 	{
 		return dayMax - dayGrown;
 	}
 	
+	//How many suns are left to be completed
 	public double getLeftSun()
 	{
 		return sunMax - sunGrown;
 	}
 	
+	//How many days are left to be completed
 	public double getLeftRain()
 	{
 		return rainMax - rainGrown;
